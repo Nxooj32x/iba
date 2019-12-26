@@ -33,6 +33,7 @@ BootState _initData(BootState state, Action action) {
   final BootState newState = state.clone();
   newState.widgetOptions = action.payload['widgets'];
   newState.tabController = new TabController(length: homeModel.list.length, vsync: payload);
+  newState.mPageController = PageController(initialPage: 0);
   newState.appBarKey = appBarKey;
   newState.homeModel = homeModel;
   return newState;

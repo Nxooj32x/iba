@@ -6,6 +6,7 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
+  final ListAdapter adapter = viewService.buildAdapter();
   return Scaffold(
     backgroundColor: Color(0xffFFFFFF),
     appBar: AppBar(
@@ -128,15 +129,14 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           preferredSize: Size.fromHeight(30.0)),
     ),
     body: PageView.builder(
-        itemCount: state.homeModel.list.length,
+        itemCount: adapter.itemCount,
         onPageChanged: (index) {
-          if (state.isPageCanChanged) {//由于pageview切换是会回调这个方法,又会触发切换tabbar的操作,所以定义一个flag,控制pageview的回调
+         if (state.isPageCanChanged) {//由于pageview切换是会回调这个方法,又会触发切换tabbar的操作,所以定义一个flag,控制pageview的回调
+           dispatch(HomeActionCreator.onPageChange(index));
           }
         },
         controller: state.mPageController,
-        itemBuilder: (BuildContext context, int index) {
-        return Center(child: Text( state.homeModel.list[index].tabName));
-        },
+        itemBuilder: adapter.itemBuilder,
       ),
 //    body: TabBarView(
 //      controller: state.tabController,

@@ -8,7 +8,8 @@ Reducer<HomeState> buildReducer() {
   return asReducer(
     <Object, Reducer<HomeState>>{
       HomeAction.action: _onAction,
-      HomeAction.initData: _onInitData
+      HomeAction.initData: _onInitData,
+      HomeAction.changeState: _changeState
     },
   );
 }
@@ -20,5 +21,11 @@ HomeState _onAction(HomeState state, Action action) {
 
 HomeState _onInitData(HomeState state, Action action) {
   final HomeState newState = state.clone();
+  return newState;
+}
+
+HomeState _changeState(HomeState state, Action action) {
+  final HomeState newState = state.clone();
+  newState.isPageCanChanged = action.payload;
   return newState;
 }

@@ -38,9 +38,11 @@ class BootState implements Cloneable<BootState> {
   /// 页面控制器（`PageController`）组件，页面视图（`PageView`）的控制器。
   PageController controller;
 
+  PageController mPageController;
+
   List<Widget> widgetOptions = [];
 
-  BootState({this.selectedIndex, this.controller});
+  BootState({this.selectedIndex, this.controller, this.mPageController});
 
   //首页数据
   GlobalKey appBarKey;
@@ -55,7 +57,8 @@ class BootState implements Cloneable<BootState> {
       ..navigationItem = navigationItem
       ..appBarKey = appBarKey
       ..tabController = tabController
-      ..homeModel = homeModel;
+      ..homeModel = homeModel
+      ..mPageController = mPageController;
   }
 }
 
@@ -77,10 +80,10 @@ class NavigationItem {
   });
 }
 
-class HomeConnector extends Reselect3<BootState, HomeState, GlobalKey, TabController,HomeModel> {
+class HomeConnector extends Reselect4<BootState, HomeState, GlobalKey, TabController,HomeModel,PageController> {
   @override
-  HomeState computed(GlobalKey sub0, TabController sub1,HomeModel sub2) {
-    return HomeState(homeModel: sub2,appBarKey: sub0,tabController: sub1);
+  HomeState computed(GlobalKey sub0, TabController sub1,HomeModel sub2,PageController pageController) {
+    return HomeState(homeModel: sub2,appBarKey: sub0,tabController: sub1, mPageController: pageController);
   }
 
   @override
@@ -99,7 +102,12 @@ class HomeConnector extends Reselect3<BootState, HomeState, GlobalKey, TabContro
   }
 
   @override
+  PageController getSub3(BootState state) {
+    return state.mPageController;
+  }
+
+  @override
   void set(BootState state, HomeState subState) {
-    throw Exception('Unexcepted to set PageState from ReportState');
+    //throw Exception('Unexcepted to set PageState from ReportState');
   }
 }
