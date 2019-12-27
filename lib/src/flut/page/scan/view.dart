@@ -10,7 +10,7 @@ Widget buildView(ScanState state, Dispatch dispatch, ViewService viewService) {
       body: QrcodeReaderView(
         key: state.key,
         onScan: (data) async {
-          print(data);
+          Navigator.pop(viewService.context,data);
         },
         headerWidget: AppBar(
           backgroundColor: Colors.transparent,

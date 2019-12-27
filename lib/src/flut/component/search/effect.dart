@@ -14,5 +14,5 @@ void _onAction(Action action, Context<SearchState> ctx) {
 }
 
 void _onScan(Action action, Context<SearchState> ctx) {
-  Navigator.of(ctx.context).pushNamed('scan');
+  Navigator.of(ctx.context).pushNamed('scan').then((value)=>println(value));
 }

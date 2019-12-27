@@ -14,7 +14,7 @@ description: Interior Beaute application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
   flutter_webview_plugin: ^0.3.8
@@ -25,6 +25,7 @@ dependencies:
   flutter_tts: ^0.7.0
   pull_to_refresh: ^1.5.7
   flutter_qr_reader: ^1.0.3
+  permission_handler: ^4.0.0
   flutter:
     sdk: flutter
 

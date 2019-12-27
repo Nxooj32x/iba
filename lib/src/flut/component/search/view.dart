@@ -1,6 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:iba/src/flut/component/search/action.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'state.dart';
 
 Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) {
@@ -54,8 +55,11 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
             ],
           ),
           // 在点击（`onTap`）熟悉，已经发生了点击时触发。
-          onTap: () {
-            dispatch(SearchActionCreator.onScan());
+          onTap: () async{
+            Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.camera]);
+            if (permissions[PermissionGroup.camera] == PermissionStatus.granted) {
+              dispatch(SearchActionCreator.onScan());
+            }
           },
         ),
         // 扩展（`Expanded`）组件，用于展开行（`Row`）、列（`Column`）或柔性（`Flex`）的子项。
