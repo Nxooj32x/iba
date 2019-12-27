@@ -1,16 +1,26 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:iba/src/flut/component/home/component/page/state.dart';
+import 'package:iba/src/flut/component/home/component/0001/component.dart';
+import 'package:iba/src/flut/component/home/component/other/component.dart';
+import 'package:iba/src/flut/component/home/component/common/state.dart';
 import 'package:iba/src/flut/model/home/home_tab_model.dart';
 
 import 'reducer.dart';
 import 'state.dart';
-import '../component/page/component.dart';
 
 class PageListAdapter extends DynamicFlowAdapter<PageListState> {
   PageListAdapter()
       : super(
           pool: <String, Component<Object>>{
-            'view': PageComponent()
+            '0001': Cpt001Component(),
+            '0010': OtherComponent(),
+            '0011': OtherComponent(),
+            '0100': OtherComponent(),
+            '0101': OtherComponent(),
+            '0111': OtherComponent(),
+            '1000': OtherComponent(),
+            '1001': OtherComponent(),
+            '1011': OtherComponent(),
+            '1100': OtherComponent(),
           },
           connector: _PageListConnector(),
           reducer: buildReducer(),
@@ -22,7 +32,7 @@ class _PageListConnector extends ConnOp<PageListState, List<ItemBean>> {
   List<ItemBean> get(PageListState state) {
     if (state.homeModel.list?.isNotEmpty == true) {
       return state.homeModel.list
-          .map<ItemBean>((HomeTabModel data) => ItemBean('view', PageState(homeTabModel: data)))
+          .map<ItemBean>((HomeTabModel data) => ItemBean(data.type, PageState(homeTabModel: data)))
           .toList(growable: true);
     } else {
       return <ItemBean>[];

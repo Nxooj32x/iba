@@ -1,12 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
-
-import 'effect.dart';
-import 'reducer.dart';
-import 'state.dart';
+import 'package:iba/src/flut/component/home/component/common/state.dart';
+import 'package:iba/src/flut/component/home/component/common/reducer.dart';
+import 'package:iba/src/flut/component/home/component/common/effect.dart';
 import 'view.dart';
 
-class PageComponent extends Component<PageState> {
-  PageComponent()
+class OtherComponent extends Component<PageState> with KeepAliveMixin {
+  OtherComponent()
       : super(
             effect: buildEffect(),
             reducer: buildReducer(),
