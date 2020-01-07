@@ -6,16 +6,15 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class HomeComponent extends Component<HomeState> with KeepAliveMixin{
+class HomeComponent extends Component<HomeState>{
   HomeComponent()
       : super(
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
             dependencies: Dependencies<HomeState>(
-                adapter: PageListConnector() + PageListAdapter(),
                 slots: <String, Dependent<HomeState>>{
-                  'appBarTitle': SearchConnector() + SearchComponent()
+                  'searchComponent': SearchConnector() + SearchComponent()
                 }),);
 
 }

@@ -20,40 +20,43 @@ void _onAction(Action action, Context<BootState> ctx) {
 
 void _initState(Action action, Context<BootState> ctx) {
   TickerProvider tickerProvider = ctx.stfState as TickerProvider;
-  GlobalKey appBarKey = GlobalKey();
-  List<HomeTabModel> list = [
-    HomeTabModel(tabName: '精选',type: '0001',prop: null),
-    HomeTabModel(tabName: '猜你喜欢',type: '0010',prop: null),
-    HomeTabModel(tabName: 'Walker',type: '0011',prop: null),
-    HomeTabModel(tabName: '艾兰',type: '0100',prop: null),
-    HomeTabModel(tabName: 'Red Cape',type: '0101',prop: null),
-    HomeTabModel(tabName: 'Oops',type: '0111',prop: null),
-    HomeTabModel(tabName: '春分',type: '1000',prop: null),
-    HomeTabModel(tabName: '芒种',type: '1001',prop: null),
-    HomeTabModel(tabName: '惊蛰',type: '1011',prop: null),
-    HomeTabModel(tabName: '霜降',type: '1100',prop: null),
-  ];
-
-  HomeModel homeModel = new HomeModel(list: list);
   ctx.dispatch(BootActionCreator.onInitData([
-    ctx.buildComponent('homeComponent'),
-    Container(child: Center(child: Text("分类")),),
-    Container(child: Center(child: IconButton(icon: Icon(Icons.settings_voice), onPressed: (){
-      var flutterTts = new FlutterTts();
-      flutterTts.setLanguage("en-US");
-      flutterTts.setSpeechRate(0.3);
-      flutterTts.setVolume(1.0);
-      flutterTts.setPitch(1.0);
-      flutterTts.speak('晚日寒鸦一片愁。柳塘新绿却温柔。若教眼底无离恨，不信人间有白头。肠已断，泪难收。相思重上小红楼。情知已被山遮断，频倚阑干不自由。');
-    })),),
-    Container(child: Center(child: Text("收益")),),
-    Container(child: Center(child: Text("我的")),),
-  ],tickerProvider,appBarKey,homeModel));
+    NavigationItem(
+      icon: 'assets/navigation_home.png',
+      activeIcon: 'assets/navigation_home_selected.png',
+      title: '首页',
+      type: 'home'
+    ),
+    NavigationItem(
+      icon: 'assets/navigation_classify.png',
+      activeIcon: 'assets/navigation_classify_selected.png',
+      title: '分类',
+      type: 'classify'
+    ),
+    NavigationItem(
+      icon: 'assets/navigation_society.png',
+      activeIcon: 'assets/navigation_society_selected.png',
+      title: '社区',
+      type: 'community'
+    ),
+    NavigationItem(
+      icon: 'assets/navigation_earnings.png',
+      activeIcon: 'assets/navigation_earnings_selected.png',
+      title: '收益',
+      type: 'profit'
+    ),
+    NavigationItem(
+      icon: 'assets/navigation_my.png',
+      activeIcon: 'assets/navigation_my_selected.png',
+      title: '我的',
+      type: 'my'
+    ),
+  ],tickerProvider));
 }
 
 void _dispose(Action action, Context<BootState> ctx) {
   ctx.state.controller.dispose();
-  ctx.state.tabController.dispose();
+  ctx.state.homeState.tabController.dispose();
 }
 
 void _switchNavigationBar(Action action, Context<BootState> ctx) {

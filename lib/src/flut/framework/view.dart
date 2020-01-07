@@ -5,15 +5,14 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(BootState state, Dispatch dispatch, ViewService viewService) {
+  final ListAdapter adapter = viewService.buildAdapter();
   return Scaffold(
       body: PageView.builder(
         // 物理（`physics`）属性，页面视图应如何响应用户输入。
         // 从不可滚动滚动物理（`NeverScrollableScrollPhysics`）类，不允许用户滚动。
         physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (BuildContext context, int index) {
-          return state.widgetOptions.elementAt(index);
-        },
-        itemCount: state.widgetOptions.length,
+        itemBuilder: adapter.itemBuilder,
+        itemCount: adapter.itemCount,
         // 控制器（`controller`）属性，用于控制滚动此页面视图位置的对象。
         controller: state.controller,),
       // 底部导航栏（`bottomNavigationBar`）属性，显示在脚手架（`Scaffold`）组件的底部。

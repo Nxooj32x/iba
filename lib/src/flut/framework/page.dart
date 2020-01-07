@@ -1,6 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:iba/src/flut/component/home/component.dart';
+import 'package:flutter/services.dart';
+import 'package:iba/src/flut/framework/adapter/adapter.dart';
 
 import 'effect.dart';
 import 'reducer.dart';
@@ -16,9 +17,8 @@ class BootPage extends Page<BootState, Map<String, dynamic>> with KeepAliveMixin
             view: buildView,
             wrapper:willPopWrapper,
             dependencies: Dependencies<BootState>(
-                adapter: null,
+                adapter: BootListConnector() + BootAdapter(),
                 slots: <String, Dependent<BootState>>{
-                'homeComponent':HomeConnector() + HomeComponent()
                 }),
             middleware: <Middleware<BootState>>[
             ],);
@@ -46,7 +46,7 @@ class WillPopWidget extends StatelessWidget {
               child: new Text('取消'),
             ),
             new FlatButton(
-              onPressed: () => Navigator.of(context).pop(true),
+              onPressed: () => SystemNavigator.pop(),
               child: new Text('确定'),
             ),
           ],
@@ -54,6 +54,6 @@ class WillPopWidget extends StatelessWidget {
       ) ??
           false;
     },
-    child:SafeArea(child: child));
+    child: child);
   }
 }

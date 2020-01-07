@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:iba/src/flut/framework/state.dart';
 import 'package:iba/src/flut/model/home/home_model.dart';
 
 //TODO replace with your own action
@@ -18,7 +19,7 @@ class BootActionCreator {
     return Action(BootAction.pageChanged,payload: {'index':index});
   }
 
-  static Action onInitData(List<Widget> widgets, TickerProvider tickerProvider, GlobalKey appBarKey,HomeModel homeModel ) {
-    return Action(BootAction.initData,payload: {'widgets':widgets,'tickerProvider':tickerProvider,'appBarKey':appBarKey,'homeModel':homeModel});
+  static Action onInitData(List<NavigationItem> widgets,TickerProvider tickerProvider) {
+    return Action(BootAction.initData,payload: {'navigationItems':widgets,'tickerProvider':tickerProvider});
   }
 }

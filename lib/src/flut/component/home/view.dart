@@ -6,7 +6,6 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
-  final ListAdapter adapter = viewService.buildAdapter();
   return Scaffold(
     backgroundColor: Color(0xffFFFFFF),
     appBar: AppBar(
@@ -23,7 +22,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
       // 如果希望标题（`title`）属性占用所有可用空间，���将此值设置为0.0。
       titleSpacing: 0.0,
       // 应用栏（`AppBar`）中显示的主要组件。
-      title: viewService.buildComponent('appBarTitle'),
+      title: viewService.buildComponent('searchComponent'),
       bottom: PreferredSize(
           child: DecoratedBox(
             // 装饰（`decoration`）属性，具体怎么画装饰。
@@ -128,22 +127,12 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           ),
           preferredSize: Size.fromHeight(30.0)),
     ),
-    body: PageView.builder(
-        itemCount: adapter.itemCount,
-        onPageChanged: (index) {
-         if (state.isPageCanChanged) {//由于pageview切换是会回调这个方法,又会触发切换tabbar的操作,所以定义一个flag,控制pageview的回调
-           dispatch(HomeActionCreator.onPageChange(index));
-          }
-        },
-        controller: state.mPageController,
-        itemBuilder: adapter.itemBuilder,
-      ),
-//    body: TabBarView(
-//      controller: state.tabController,
-//      children:state.homeModel.list.map((HomeTabModel homeTabModel) {
-//        return Center(
-//          child: new Text(homeTabModel.tabName),
-//        );
-//      }).toList())
+    body: TabBarView(
+      controller: state.tabController,
+      children:state.homeModel.list.map((HomeTabModel homeTabModel) {
+        return Center(
+          child: new Text(homeTabModel.tabName),
+        );
+      }).toList())
   );
 }

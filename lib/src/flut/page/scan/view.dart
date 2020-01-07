@@ -12,10 +12,6 @@ Widget buildView(ScanState state, Dispatch dispatch, ViewService viewService) {
         onScan: (data) async {
           Navigator.pop(viewService.context,data);
         },
-        headerWidget: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-        ),
       ),
   );
 }

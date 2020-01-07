@@ -1,6 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:iba/src/flut/component/home/state.dart';
 import 'package:iba/src/flut/model/home/home_model.dart';
+import 'package:iba/src/flut/model/home/home_tab_model.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -27,15 +29,24 @@ BootState _pageChanged(BootState state, Action action) {
 }
 
 BootState _initData(BootState state, Action action) {
-  TickerProvider payload = action.payload['tickerProvider'];
-  HomeModel homeModel = action.payload['homeModel'];
-  GlobalKey appBarKey = action.payload['appBarKey'];
   final BootState newState = state.clone();
-  newState.widgetOptions = action.payload['widgets'];
-  newState.tabController = new TabController(length: homeModel.list.length, vsync: payload);
-  newState.mPageController = PageController(initialPage: 0);
-  newState.appBarKey = appBarKey;
-  newState.homeModel = homeModel;
+  GlobalKey appBarKey = GlobalKey();
+  List<HomeTabModel> list = [
+    HomeTabModel(tabName: '精选',type: '0001',prop: null),
+    HomeTabModel(tabName: '猜你喜欢',type: '0010',prop: null),
+    HomeTabModel(tabName: 'Walker',type: '0011',prop: null),
+    HomeTabModel(tabName: '艾兰',type: '0100',prop: null),
+    HomeTabModel(tabName: 'Red Cape',type: '0101',prop: null),
+    HomeTabModel(tabName: 'Oops',type: '0111',prop: null),
+    HomeTabModel(tabName: '春分',type: '1000',prop: null),
+    HomeTabModel(tabName: '芒种',type: '1001',prop: null),
+    HomeTabModel(tabName: '惊蛰',type: '1011',prop: null),
+    HomeTabModel(tabName: '霜降',type: '1100',prop: null),
+  ];
+  newState.navigationItem = action.payload['navigationItems'];
+  TickerProvider payload = action.payload['tickerProvider'];
+  HomeModel homeModel = new HomeModel(list: list);
+  newState.homeState = HomeState(homeModel: homeModel,appBarKey: appBarKey,tabController:new TabController(length: homeModel.list.length, vsync: payload));
   return newState;
 }
 

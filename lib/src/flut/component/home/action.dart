@@ -1,8 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:iba/src/flut/model/home/home_model.dart';
 
 //TODO replace with your own action
-enum HomeAction { action ,initData,pageChange,changeState}
+enum HomeAction { action ,initData,pageChange}
 
 class HomeActionCreator {
   static Action onAction() {
@@ -17,7 +18,4 @@ class HomeActionCreator {
     return Action(HomeAction.pageChange,payload: index);
   }
 
-  static Action onChangeState(bool b) {
-    return Action(HomeAction.changeState,payload: b);
-  }
 }
