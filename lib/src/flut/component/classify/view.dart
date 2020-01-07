@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -55,12 +56,16 @@ Widget buildView(ClassifyState state, Dispatch dispatch, ViewService viewService
               ?.then((result) {
             // You can handle JS result here.
             Fluttertoast.showToast(msg:result);
+            var dio = Dio();
+            dio.get("http://134.175.57.240/").then((result){
+              Fluttertoast.showToast(msg:result.toString());
+            });
           });
         });
   }
 
   return  WebView(
-    initialUrl: "http://192.168.0.101",///初始化url
+    initialUrl: "http://134.175.57.240/",///初始化url
     javascriptMode: JavascriptMode.unrestricted,///JS执行模式
     onWebViewCreated: (WebViewController webViewController) {///在WebView创建完成后调用，只会被调用一次
       state.controller = webViewController;
