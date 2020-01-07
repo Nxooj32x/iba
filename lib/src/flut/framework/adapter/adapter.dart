@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fish_redux/fish_redux.dart';
 import 'package:iba/src/flut/component/classify/component.dart';
 import 'package:iba/src/flut/component/classify/state.dart';
@@ -9,6 +11,7 @@ import 'package:iba/src/flut/component/my/component.dart';
 import 'package:iba/src/flut/component/my/state.dart';
 import 'package:iba/src/flut/component/profit/component.dart';
 import 'package:iba/src/flut/component/profit/state.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import 'reducer.dart';
 import 'state.dart';

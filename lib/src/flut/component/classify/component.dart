@@ -4,7 +4,7 @@ import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
-
+// with KeepAliveMixin
 class ClassifyComponent extends Component<ClassifyState> {
   ClassifyComponent()
       : super(

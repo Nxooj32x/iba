@@ -1,6 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:iba/src/flut/component/search/component.dart';
-import 'adapter/adapter.dart';
 import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:iba/src/flut/component/search/state.dart';
 import 'package:iba/src/flut/model/home/home_model.dart';
 import 'package:iba/src/flut/model/home/home_tab_model.dart';
-import 'adapter/state.dart';
 class HomeState implements Cloneable<HomeState> {
   GlobalKey appBarKey;
   TabController tabController;
@@ -56,25 +55,6 @@ class SearchConnector extends Reselect2<HomeState, SearchState, int, int> {
 
   @override
   void set(HomeState state, SearchState subState) {
-    throw Exception('Unexcepted to set PageState from ReportState');
-  }
-}
-
-
-class PageListConnector extends Reselect1<HomeState, PageListState, HomeModel> {
-  @override
-  PageListState computed(HomeModel sub0) {
-    return PageListState(homeModel: sub0);
-  }
-
-  @override
-  HomeModel getSub0(HomeState state) {
-    return state.homeModel;
-  }
-
-
-  @override
-  void set(HomeState state, PageListState subState) {
     throw Exception('Unexcepted to set PageState from ReportState');
   }
 }
