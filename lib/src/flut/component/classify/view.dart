@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:iba/src/flut/model/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:vibrate/vibrate.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -58,14 +60,15 @@ Widget buildView(ClassifyState state, Dispatch dispatch, ViewService viewService
             Fluttertoast.showToast(msg:result);
             var dio = Dio();
             dio.get("http://134.175.57.240/").then((result){
+              Vibrate.feedback(FeedbackType.success);
               Fluttertoast.showToast(msg:result.toString());
             });
           });
         });
   }
 
-  return  WebView(
-    initialUrl: "http://134.175.57.240/",///初始化url
+  WebView webView = WebView(
+    initialUrl: Constants.URL_INDEX,///初始化url
     javascriptMode: JavascriptMode.unrestricted,///JS执行模式
     onWebViewCreated: (WebViewController webViewController) {///在WebView创建完成后调用，只会被调用一次
       state.controller = webViewController;
@@ -88,4 +91,6 @@ Widget buildView(ClassifyState state, Dispatch dispatch, ViewService viewService
     },
 
   );
+
+  return  Container(child: Center(child: Text("分类")),);
 }

@@ -32,16 +32,16 @@ BootState _initData(BootState state, Action action) {
   final BootState newState = state.clone();
   GlobalKey appBarKey = GlobalKey();
   List<HomeTabModel> list = [
-    HomeTabModel(tabName: '精选',type: '0001',prop: null),
-    HomeTabModel(tabName: '猜你喜欢',type: '0010',prop: null),
-    HomeTabModel(tabName: 'Walker',type: '0011',prop: null),
-    HomeTabModel(tabName: '艾兰',type: '0100',prop: null),
-    HomeTabModel(tabName: 'Red Cape',type: '0101',prop: null),
-    HomeTabModel(tabName: 'Oops',type: '0111',prop: null),
-    HomeTabModel(tabName: '春分',type: '1000',prop: null),
-    HomeTabModel(tabName: '芒种',type: '1001',prop: null),
-    HomeTabModel(tabName: '惊蛰',type: '1011',prop: null),
-    HomeTabModel(tabName: '霜降',type: '1100',prop: null),
+    HomeTabModel(tabName: '发现',type: '0001',prop: null),
+    HomeTabModel(tabName: '推荐',type: '0010',prop: null),
+    HomeTabModel(tabName: '必备',type: '0011',prop: null),
+    HomeTabModel(tabName: '视频',type: '0100',prop: null),
+    HomeTabModel(tabName: '游戏',type: '0101',prop: null),
+    HomeTabModel(tabName: '春分',type: '0111',prop: null),
+    HomeTabModel(tabName: '芒种',type: '1000',prop: null),
+    HomeTabModel(tabName: '惊蛰',type: '1001',prop: null),
+    HomeTabModel(tabName: '霜降',type: '1011',prop: null),
+    HomeTabModel(tabName: '软件',type: '1100',prop: null),
   ];
   newState.navigationItem = action.payload['navigationItems'];
   TickerProvider payload = action.payload['tickerProvider'];
