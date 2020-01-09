@@ -43,7 +43,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                       child: Text(
                         homeTabModel.tabName,
                         style: TextStyle(
-                            fontSize: 14.0, color: Colors.white70),
+                            fontSize: 16.0, color: Colors.white70),
                       ),
                     ),
                   ))

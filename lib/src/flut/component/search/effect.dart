@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
@@ -76,29 +78,9 @@ void _onCheckVersion(Action action, Context<SearchState> ctx) {
                       onPressed: () async{
                         Directory appDocDir = await getApplicationDocumentsDirectory();
                         String appDocPath = appDocDir.path;
-                        OtaUpdate().execute(downloadUrl).listen(
-                              (OtaEvent event) {
-                            print('status:${event.status},value:${event.value}');
-                            switch(event.status){
-                              case OtaStatus.DOWNLOADING: // 下载中
-                                print('下载进度:${event.value}%');
-                                break;
-                              case OtaStatus.INSTALLING: //安装中
-                                print('-----安装中----');
-                                // 打开安装文件
-                                //这里的这个Apk文件名可以写，也可以不写
-                                //不写的话会出现让你选择用浏览器打开，点击取消就好了，写了后会直接打开当前目录下的Apk文件，名字随便定就可以
-                                //OpenFile.open("${appDocPath}/app.apk");
-                                break;
-                              case OtaStatus.PERMISSION_NOT_GRANTED_ERROR: // 权限错误
-                                print('更新失败，请稍后再试');
-
-                                break;
-                              default: // 其他问题
-                                break;
-                            }
-                          },
-                        );
+                        final SendPort send =
+                        IsolateNameServer.lookupPortByName('downloader_send_port');
+                        send.send([downloadUrl]);
                         Navigator.of(context).pop();
                       },
                     )

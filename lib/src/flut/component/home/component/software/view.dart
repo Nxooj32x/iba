@@ -1,3 +1,6 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
@@ -51,65 +54,83 @@ import 'state.dart';
 Widget buildView(
     SoftWareState state, Dispatch dispatch, ViewService viewService) {
   ///js与flutter交互
-  JavascriptChannel _alertJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'TaoGeToken_alert', //invoke要和网页协商一致
-        onMessageReceived: (JavascriptMessage message) {
-          print(message.message);
-          state.controller
-              ?.evaluateJavascript('callJS("visible")')
-              ?.then((result) {
-            // You can handle JS result here.
-            Fluttertoast.showToast(msg: result);
-            var dio = Dio();
-            dio.get("http://134.175.57.240/").then((result) {
-              Vibrate.feedback(FeedbackType.success);
-              Fluttertoast.showToast(msg: result.toString());
-            });
-          });
-        });
-  }
+//  JavascriptChannel _alertJavascriptChannel(BuildContext context) {
+//    return JavascriptChannel(
+//        name: 'TaoGeToken_alert', //invoke要和网页协商一致
+//        onMessageReceived: (JavascriptMessage message) {
+//          print(message.message);
+//          state.controller
+//              ?.evaluateJavascript('callJS("visible")')
+//              ?.then((result) {
+//            // You can handle JS result here.
+//            Fluttertoast.showToast(msg: result);
+//            var dio = Dio();
+//            dio.get("http://134.175.57.240/").then((result) {
+//              Vibrate.feedback(FeedbackType.success);
+//              Fluttertoast.showToast(msg: result.toString());
+//            });
+//          });
+//        });
+//  }
+//
+//  JavascriptChannel _reloadJavascriptChannel(BuildContext context) {
+//    return JavascriptChannel(
+//        name: 'TaoGeToken_reload', //invoke要和网页协商一致
+//        onMessageReceived: (JavascriptMessage message) {
+//          state.controller.reload();
+//        });
+//  }
 
-  JavascriptChannel _reloadJavascriptChannel(BuildContext context) {
-    return JavascriptChannel(
-        name: 'TaoGeToken_reload', //invoke要和网页协商一致
-        onMessageReceived: (JavascriptMessage message) {
-          state.controller.reload();
-        });
-  }
+  return Scaffold(
+    body: WebView(
+      initialUrl: state.url,
+      ///初始化url
+      javascriptMode: JavascriptMode.unrestricted,
 
-  return WebView(
-    initialUrl: Constants.URL_INDEX,
-    ///初始化url
-    javascriptMode: JavascriptMode.unrestricted,
+      ///JS执行模式
+      onWebViewCreated: (WebViewController webViewController) {
+        ///在WebView创建完成后调用，只会被调用一次
+        state.controller = webViewController;
+      },
+      javascriptChannels: <JavascriptChannel>[
+        ///JS和Flutter通信的Channel；
+        //_alertJavascriptChannel(viewService.context),
+        //_reloadJavascriptChannel(viewService.context)
+      ].toSet(),
+      navigationDelegate: (NavigationRequest request) {
+        //路由委托（可以通过在此处拦截url实现JS调用Flutter部分）；
+        ///通过拦截url来实现js与flutter交互
+        if (request.url.startsWith('js://webview')) {
+          Fluttertoast.showToast(msg: 'JS调用了Flutter By navigationDelegate');
+          print('blocking navigation to $request}');
+          return NavigationDecision.prevent;
 
-    ///JS执行模式
-    onWebViewCreated: (WebViewController webViewController) {
-      ///在WebView创建完成后调用，只会被调用一次
-      state.controller = webViewController;
-    },
-    javascriptChannels: <JavascriptChannel>[
-      ///JS和Flutter通信的Channel；
-      _alertJavascriptChannel(viewService.context),
-      _reloadJavascriptChannel(viewService.context)
-    ].toSet(),
-    navigationDelegate: (NavigationRequest request) {
-      //路由委托（可以通过在此处拦截url实现JS调用Flutter部分）；
-      ///通过拦截url来实现js与flutter交互
-      if (request.url.startsWith('js://webview')) {
-        Fluttertoast.showToast(msg: 'JS调用了Flutter By navigationDelegate');
-        print('blocking navigation to $request}');
-        return NavigationDecision.prevent;
+          ///阻止路由替换，不能跳转，因为这是js交互给我们发送的消息
+        }
 
-        ///阻止路由替换，不能跳转，因为这是js交互给我们发送的消息
-      }
-      return NavigationDecision.navigate;
-      ///允许路由替换
-    },
-    onPageFinished: (String url) {
-      ///页面加载完成回调
-      print('Page finished loading: $url');
-    },
+        if (request.url.endsWith('dev.apk')) {
+          Fluttertoast.showToast(msg: '安装包下载中...  请稍后操作');
+          print('blocking navigation to $request}');
+          final SendPort send =IsolateNameServer.lookupPortByName('downloader_send_port');
+          send.send([request.url]);
+          return NavigationDecision.prevent;
+
+          ///阻止路由替换，不能跳转，因为这是js交互给我们发送的消息
+        }
+        return NavigationDecision.navigate;
+        ///允许路由替换
+      },
+      onPageFinished: (String url) {
+        ///页面加载完成回调
+        print('Page finished loading: $url');
+      },
+    ),
+    floatingActionButton: FloatingActionButton(
+      onPressed: (){
+        state.controller.reload();
+      },
+      child: Icon(Icons.refresh),
+      foregroundColor: Colors.red,
+    ),
   );
-  ;
 }
