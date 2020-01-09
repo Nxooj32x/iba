@@ -30,9 +30,9 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                 // 标签栏（`TabBar`）组件，显示一排水平的标签。
                 child: TabBar(
                   // 标签颜色（`labelColor`）属性，所选标签标签的颜色。
-                  labelColor: Color(0xffFFFFFF),
+                  labelColor: Colors.white,
                   // 未选定标签颜色（`unselectedLabelColor`）属性，未选定标签的颜色。
-                  unselectedLabelColor: Color(0xffFFFFFF),
+                  unselectedLabelColor: Colors.white70,
                   // 控制器（`controller`）属性，此组件的选择和动画状态。
                   controller: state.tabController,
                   // 标签（`tabs`）属性，通常是两个或多个标签组件的列表。
@@ -43,7 +43,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                       child: Text(
                         homeTabModel.tabName,
                         style: TextStyle(
-                            fontSize: 16.0, color: Colors.white70),
+                            fontSize: 15.0,),
                       ),
                     ),
                   ))
@@ -107,16 +107,30 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           ),
           preferredSize: Size.fromHeight(30.0)),
     ),
-    body: TabBarView(
-      controller: state.tabController,
-      children:state.homeModel.list.map((HomeTabModel homeTabModel) {
-        if (homeTabModel.type == "1100") {
-          return viewService.buildComponent('softwareComponent');
-        } else {
-          return Center(
-            child: new Text(homeTabModel.tabName),
-          );
-        }
-      }).toList())
+    body: Container(
+      padding: EdgeInsets.only(top: 4),
+      decoration: BoxDecoration(
+        color: Colors.orange
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0),topRight: Radius.circular(12.0)),
+        ),
+        child: TabBarView(
+          controller: state.tabController,
+          children:state.homeModel.list.map((HomeTabModel homeTabModel) {
+            if (homeTabModel.type == "1100") {
+              return viewService.buildComponent('softwareComponent');
+            } else if (homeTabModel.type == "0001"){
+              return viewService.buildComponent('findComponent');
+            } else {
+              return Center(
+                child: new Text(homeTabModel.tabName),
+              );
+            }
+          }).toList()),
+      ),
+    )
   );
 }

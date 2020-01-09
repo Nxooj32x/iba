@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:iba/src/flut/component/home/component/find/state.dart';
 import 'package:iba/src/flut/component/home/component/software/state.dart';
 import 'package:iba/src/flut/component/search/state.dart';
 import 'package:iba/src/flut/model/constants.dart';
@@ -72,6 +73,23 @@ class SoftWareConnector extends Reselect1<HomeState, SoftWareState, String> {
 
   @override
   void set(HomeState state, SoftWareState subState) {
+    throw Exception('Unexcepted to set PageState from ReportState');
+  }
+}
+
+class FindConnector extends Reselect1<HomeState, FindState, String> {
+  @override
+  FindState computed(String sub0) {
+    return FindState();
+  }
+
+  @override
+  String getSub0(HomeState state) {
+    return "";
+  }
+
+  @override
+  void set(HomeState state, FindState subState) {
     throw Exception('Unexcepted to set PageState from ReportState');
   }
 }

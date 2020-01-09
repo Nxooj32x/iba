@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:iba/src/flut/component/home/component/find/component.dart';
 import 'package:iba/src/flut/component/home/component/software/component.dart';
 import 'package:iba/src/flut/component/search/component.dart';
 import 'effect.dart';
@@ -15,7 +16,8 @@ class HomeComponent extends Component<HomeState>{
             dependencies: Dependencies<HomeState>(
                 slots: <String, Dependent<HomeState>>{
                   'searchComponent': SearchConnector() + SearchComponent(),
-                  'softwareComponent': SoftWareConnector() + SoftWareComponent()
+                  'softwareComponent': SoftWareConnector() + SoftWareComponent(),
+                  'findComponent': FindConnector() + FindComponent()
                 }),);
 
 }

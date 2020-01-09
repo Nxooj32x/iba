@@ -121,7 +121,7 @@ Widget buildView(
         ///允许路由替换
       },
       onPageFinished: (String url) {
-        ///页面加载完成回调
+        Fluttertoast.showToast(msg: '刷新成功');
         print('Page finished loading: $url');
       },
     ),

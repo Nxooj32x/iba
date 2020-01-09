@@ -32,6 +32,8 @@ dependencies:
   open_file: ^2.0.1+2
   ota_update: ^2.0.2
   vibrate: ^0.0.4
+  event_bus: ^1.1.0
+  flutter_swiper: ^1.1.6
   flutter:
     sdk: flutter
 
