@@ -15,7 +15,7 @@ Widget createApp() {
   );
 
   return MaterialApp(
-    title: 'Flut应用',
+    title: 'TaoGeTalking应用',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primarySwatch: Colors.orange,

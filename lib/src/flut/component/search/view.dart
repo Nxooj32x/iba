@@ -9,39 +9,17 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
     // 主轴对齐（`mainAxisAlignment`）属性，如何将子组件放在主轴上。
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      // 手势探测器（`GestureDetector`）组件，检测手势的组件。
       GestureDetector(
-        child: Stack(
-          children: <Widget>[
-            Opacity(
-              opacity: 0.0,
-              child: Container(
-                width: 49.0,
-                height: 23.0,
-                color: Color(0xffFFFFFF),
-              ),
-            ),
-            Container(
-              // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
-              padding: EdgeInsets.only(
-                left: 14.0,
-                right: 12.0,
-              ),
-              child: Image.asset(
-                'assets/app_bar_scan.png',
-                height: 23,
-                width: 23,
-              ),
-            ),
-          ],
-        ),
-        // 在点击（`onTap`）熟悉，已经发生了点击时触发。
-        onTap: () async{
-          Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.camera]);
-          if (permissions[PermissionGroup.camera] == PermissionStatus.granted) {
-            dispatch(SearchActionCreator.onScan());
-          }
+        onTap: (){
         },
+        child: Container(
+          // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
+          padding: EdgeInsets.only(
+            left: 14.0,
+            right: 8
+          ),
+          child: Icon(Icons.person,color: Colors.white,size: 28,),
+        ),
       ),
       // 扩展（`Expanded`）组件，用于展开行（`Row`）、列（`Column`）或柔性（`Flex`）的子项。
       Expanded(
@@ -77,47 +55,68 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
           },
         ),
       ),
-      GestureDetector(
-        child: Stack(
-          children: <Widget>[
-            Opacity(
-              opacity: 0.0,
-              child: Container(
-                width: 49.0,
-                height: 23.0,
-                color: Color(0xffFFFFFF),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(
-                right: 14.0,
-                left: 12.0,
-              ),
-              child: Stack(
-                // 对准属性，如何将堆叠中未定位和部分定位的子项对齐。
-                alignment: Alignment.topRight,
-                children: <Widget>[
-                  Image.asset(
-                    'assets/app_bar_service.png',
+      // 手势探测器（`GestureDetector`）组件，检测手势的组件。
+      Row(
+        children: <Widget>[
+          GestureDetector(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
+                  padding: EdgeInsets.only(
+                    left: 14.0,
+                  ),
+                  child: Image.asset(
+                    'assets/app_bar_scan.png',
                     height: 23,
                     width: 23,
                   ),
-                  Image.asset(
-                    'assets/app_bar_service_angle.png',
-                    height: 8,
-                    width: 14,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-        onTap: () {
-          dispatch(SearchActionCreator.onCheckVersion());
-        },
-      ),
-      SizedBox(
-        height: 50.0,
+            // 在点击（`onTap`）熟悉，已经发生了点击时触发。
+            onTap: () async{
+              Map<PermissionGroup, PermissionStatus> permissions = await PermissionHandler().requestPermissions([PermissionGroup.camera]);
+              if (permissions[PermissionGroup.camera] == PermissionStatus.granted) {
+                dispatch(SearchActionCreator.onScan());
+              }
+            },
+          ),
+          GestureDetector(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(
+                    right: 14.0,
+                    left: 12.0,
+                  ),
+                  child: Stack(
+                    // 对准属性，如何将堆叠中未定位和部分定位的子项对齐。
+                    alignment: Alignment.topRight,
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/app_bar_service.png',
+                        height: 23,
+                        width: 23,
+                      ),
+                      Image.asset(
+                        'assets/app_bar_service_angle.png',
+                        height: 8,
+                        width: 14,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            onTap: () {
+              dispatch(SearchActionCreator.onCheckVersion());
+            },
+          ),
+          SizedBox(
+            height: 50.0,
+          ),
+        ],
       ),
     ],
   );
