@@ -13,7 +13,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
     children: <Widget>[
       GestureDetector(
         onTap: (){
-          dispatch(SearchActionCreator.onScan());
+          dispatch(SearchActionCreator.onMine());
         },
         child: Container(
           // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。

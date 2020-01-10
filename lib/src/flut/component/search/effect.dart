@@ -10,8 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iba/src/flut/model/constants.dart';
 import 'package:iba/src/flut/page/mine/page.dart';
 import 'package:iba/src/flut/page/scan/page.dart';
-import 'package:open_file/open_file.dart';
-import 'package:ota_update/ota_update.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'action.dart';
