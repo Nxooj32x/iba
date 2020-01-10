@@ -4,9 +4,12 @@ import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart' hide Action;
 import 'package:flutter/material.dart' hide Action;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iba/src/flut/model/constants.dart';
+import 'package:iba/src/flut/page/mine/page.dart';
+import 'package:iba/src/flut/page/scan/page.dart';
 import 'package:open_file/open_file.dart';
 import 'package:ota_update/ota_update.dart';
 import 'package:package_info/package_info.dart';
@@ -18,14 +21,24 @@ Effect<SearchState> buildEffect() {
   return combineEffects(<Object, Effect<SearchState>>{
     SearchAction.action: _onAction,
     SearchAction.scan: _onScan,
-    SearchAction.checkVersion: _onCheckVersion
+    SearchAction.checkVersion: _onCheckVersion,
+  SearchAction.mine: _onMine
   });
 }
 
 void _onAction(Action action, Context<SearchState> ctx) {}
 
+
+void _onMine(Action action, Context<SearchState> ctx) {
+  Navigator.push(ctx.context,CupertinoPageRoute(builder: (BuildContext context){
+    return MinePage().buildPage(null);
+  }));
+}
+
 void _onScan(Action action, Context<SearchState> ctx) {
-  Navigator.of(ctx.context).pushNamed('scan').then((value) {
+  Navigator.push(ctx.context,CupertinoPageRoute(builder: (BuildContext context){
+    return ScanPage().buildPage(null);
+  })).then((value) {
     if (value != null) {
       Fluttertoast.showToast(
           msg: value,

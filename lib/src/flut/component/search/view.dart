@@ -1,6 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iba/src/flut/component/search/action.dart';
+import 'package:iba/src/flut/page/mine/page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'state.dart';
 
@@ -11,6 +13,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
     children: <Widget>[
       GestureDetector(
         onTap: (){
+          dispatch(SearchActionCreator.onScan());
         },
         child: Container(
           // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
@@ -18,7 +21,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
             left: 14.0,
             right: 8
           ),
-          child: Icon(Icons.person,color: Colors.white,size: 28,),
+          child: Icon(Icons.person_outline,color: Colors.white,size: 28,),
         ),
       ),
       // 扩展（`Expanded`）组件，用于展开行（`Row`）、列（`Column`）或柔性（`Flex`）的子项。

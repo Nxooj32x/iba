@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:iba/src/flut/page/mine/page.dart';
 import 'package:iba/src/flut/page/scan/page.dart';
 
 import 'framework/page.dart';
@@ -9,7 +10,8 @@ Widget createApp() {
   final AbstractRoutes routes = PageRoutes(
     pages: <String, Page<Object, dynamic>>{
       'bootPage': BootPage(),
-      'scan': ScanPage()
+      'scan': ScanPage(),
+      'mine': MinePage()
     },
     visitor: (String path, Page<Object, dynamic> page) {},
   );
