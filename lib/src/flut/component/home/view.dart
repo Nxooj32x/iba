@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:iba/src/flut/component/home/component/page/page.dart';
 import 'package:iba/src/flut/model/home/home_tab_model.dart';
 
 import 'action.dart';
@@ -122,13 +123,10 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           children:state.homeModel.list.map((HomeTabModel homeTabModel) {
             if (homeTabModel.type == "1100") {
               return viewService.buildComponent('softwareComponent');
-            } else if (homeTabModel.type == "0001"){
-              return viewService.buildComponent('findComponent');
             } else {
-              return Center(
-                child: new Text(homeTabModel.tabName),
-              );
+              return TabViewPage().buildPage({"type":homeTabModel.type});
             }
+
           }).toList()),
       ),
     )
