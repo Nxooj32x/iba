@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:iba/src/flut/model/home/home_model.dart';
 
 //TODO replace with your own action
-enum HomeAction { action ,initData,pageChange}
+enum HomeAction { action ,initData,pageChange,category}
 
 class HomeActionCreator {
   static Action onAction() {
@@ -16,6 +16,9 @@ class HomeActionCreator {
 
   static Action onPageChange(int index) {
     return Action(HomeAction.pageChange,payload: index);
+  }
+  static Action onCategory() {
+    return Action(HomeAction.category);
   }
 
 }

@@ -102,7 +102,9 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                   ],
                 ),
                 // 在点击（`onTap`）熟悉，已经发生了点击时触发。
-                onTap: () async {},
+                onTap: (){
+                  dispatch(HomeActionCreator.onCategory());
+                },
               ),
             ],
           ),

@@ -62,6 +62,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
             ),
           ),
           onTap: () {
+            dispatch(SearchActionCreator.onSearch());
           },
         ),
       ),

@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iba/src/flut/model/constants.dart';
 import 'package:iba/src/flut/page/mine/page.dart';
 import 'package:iba/src/flut/page/scan/page.dart';
+import 'package:iba/src/flut/page/search/page.dart';
 import 'package:package_info/package_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'action.dart';
@@ -20,7 +21,8 @@ Effect<SearchState> buildEffect() {
     SearchAction.action: _onAction,
     SearchAction.scan: _onScan,
     SearchAction.checkVersion: _onCheckVersion,
-  SearchAction.mine: _onMine
+    SearchAction.mine: _onMine,
+    SearchAction.search: _onSearch
   });
 }
 
@@ -31,6 +33,10 @@ void _onMine(Action action, Context<SearchState> ctx) {
   Navigator.push(ctx.context,CupertinoPageRoute(builder: (BuildContext context){
     return MinePage().buildPage(null);
   }));
+}
+
+void _onSearch(Action action, Context<SearchState> ctx) {
+  Navigator.pushNamed(ctx.context, "search");
 }
 
 void _onScan(Action action, Context<SearchState> ctx) {

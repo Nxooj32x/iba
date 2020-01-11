@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 
 //TODO replace with your own action
-enum SearchAction { action , scan , checkVersion ,mine}
+enum SearchAction { action , scan , checkVersion ,mine,search}
 
 class SearchActionCreator {
   static Action onAction() {
@@ -13,6 +13,10 @@ class SearchActionCreator {
   }
   static Action onMine() {
     return  Action(SearchAction.mine);
+  }
+
+  static Action onSearch() {
+    return  Action(SearchAction.search);
   }
 
   static Action onCheckVersion() {
