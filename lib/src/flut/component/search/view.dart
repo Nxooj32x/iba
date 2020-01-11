@@ -15,13 +15,20 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
         onTap: (){
           dispatch(SearchActionCreator.onMine());
         },
-        child: Container(
-          // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
-          padding: EdgeInsets.only(
-            left: 14.0,
-            right: 8
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            // 填充（`padding`）属性，在装饰里面的空白空间，如果有的话，将子组件放在这个衬垫内。
+            padding: EdgeInsets.only(
+              left: 14.0,
+              right: 8
+            ),
+            child: Image.asset(
+              "assets/navigation_my.png",
+              height: 20,
+              color: Colors.white,
+            ),
           ),
-          child: Icon(Icons.person_outline,color: Colors.white,size: 28,),
         ),
       ),
       // 扩展（`Expanded`）组件，用于展开行（`Row`）、列（`Column`）或柔性（`Flex`）的子项。

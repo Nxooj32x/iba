@@ -36,13 +36,13 @@ void _initState(Action action, Context<BootState> ctx) {
     NavigationItem(
       icon: 'assets/navigation_society.png',
       activeIcon: 'assets/navigation_society_selected.png',
-      title: '社区',
+      title: '关注',
       type: 'community'
     ),
     NavigationItem(
       icon: 'assets/navigation_earnings.png',
       activeIcon: 'assets/navigation_earnings_selected.png',
-      title: '收益',
+      title: '统计',
       type: 'profit'
     ),
     NavigationItem(

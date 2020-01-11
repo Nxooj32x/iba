@@ -6,7 +6,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'state.dart';
 
 Widget buildView(FindState state, Dispatch dispatch, ViewService viewService) {
-  List<String> items = ["1", "2", "3", "4", "5", "6", "7", "8"];
   void _onRefresh() async {
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 1000));
