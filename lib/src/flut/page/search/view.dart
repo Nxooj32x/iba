@@ -104,7 +104,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                           // 提示样式属性，用于提示文本（`hintText`）的样式。
                           hintStyle: TextStyle(
                             // 字体大小。
-                            fontSize: 13.0,
+                            fontSize: 12.0,
                             // 字体系列。
                             fontFamily: 'PingFangRegular',
                             // 颜色。
@@ -133,9 +133,9 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                 child: Text(
                   '取消',
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 14.0,
                     fontFamily: 'PingFangMedium',
-                    color: Color(0xff333333),
+                    color: Color(0xFF666666),
                   ),
                 ),
               ),
@@ -162,7 +162,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                 ' 大家都在搜',
                 style: TextStyle(
                   // 字体大小。
-                  fontSize: 15.0,
+                  fontSize: 12.0,
                   // 字体系列。
                   fontFamily: 'PingFangMedium',
                   // 颜色。
@@ -182,7 +182,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
               return  ChoiceChip(
                 label: Text(
                   str,
-                  style: TextStyle(fontSize: 14, fontFamily: 'PingFangRegular'),
+                  style: TextStyle(fontSize: 12, fontFamily: 'PingFangRegular'),
                 ),
                 selected: false,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -215,7 +215,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                     ' 搜索历史',
                     style: TextStyle(
                       // 字体大小。
-                      fontSize: 15.0,
+                      fontSize: 12.0,
                       // 字体系列。
                       fontFamily: 'PingFangMedium',
                       // 颜色。
@@ -239,7 +239,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                       '清除',
                       style: TextStyle(
                         // 字体大小。
-                        fontSize: 15.0,
+                        fontSize: 12.0,
                         // 字体系列。
                         fontFamily: 'PingFangRegular',
                         // 颜色。
@@ -262,7 +262,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
               return  ChoiceChip(
                 label: Text(
                   str,
-                  style: TextStyle(fontSize: 14, fontFamily: 'PingFangRegular'),
+                  style: TextStyle(fontSize: 12, fontFamily: 'PingFangRegular'),
                 ),
                 selected: false,
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
