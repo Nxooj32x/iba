@@ -5,5 +5,5 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(ProfitState state, Dispatch dispatch, ViewService viewService) {
-  return Container(child: Center(child: Text("收益")),);
+  return  AndroidView(viewType: 'plugins.com.beaute.interior.iba/customwebview');
 }
