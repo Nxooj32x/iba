@@ -26,7 +26,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
             child: Image.asset(
               "assets/navigation_my.png",
               height: 20,
-              color: Colors.white,
+              color: Colors.black38,
             ),
           ),
         ),
@@ -81,6 +81,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                     'assets/app_bar_scan.png',
                     height: 23,
                     width: 23,
+                    color: Colors.black38,
                   ),
                 ),
               ],
@@ -109,6 +110,7 @@ Widget buildView(SearchState state, Dispatch dispatch, ViewService viewService) 
                         'assets/app_bar_service.png',
                         height: 23,
                         width: 23,
+                        color: Colors.black38,
                       ),
                       Image.asset(
                         'assets/app_bar_service_angle.png',

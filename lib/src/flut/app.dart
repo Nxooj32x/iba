@@ -25,7 +25,7 @@ Widget createApp() {
     );
   };
   return MaterialApp(
-    title: 'TaoGeTalking应用',
+    title: 'TaoGeTalk应用',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primarySwatch: Colors.orange,

@@ -8,10 +8,10 @@ import 'package:ota_update/ota_update.dart';
 import 'src/flut/app.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+  //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+   //   .then((_) {
+//    SystemChrome.setEnabledSystemUIOverlays(
+//        [SystemUiOverlay.bottom, SystemUiOverlay.top]);
     ReceivePort _port = ReceivePort();
     IsolateNameServer.registerPortWithName(
         _port.sendPort, 'downloader_send_port');
@@ -40,5 +40,5 @@ void main() {
       );
     });
     runApp(createApp());
-  });
+  //});
 }

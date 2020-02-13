@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iba/src/flut/page/top/page.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -40,6 +42,11 @@ Widget buildView(MyState state, Dispatch dispatch, ViewService viewService) {
               ),
             ),
           ),
+          IconButton(icon: Icon(Icons.markunread_mailbox),onPressed: (){
+            Navigator.push(viewService.context,CupertinoPageRoute(builder: (BuildContext context){
+              return TopPage().buildPage(null);
+            }));
+          },)
         ],
       ),
     ),

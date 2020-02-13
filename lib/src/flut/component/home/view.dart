@@ -21,6 +21,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
       // 标题间距（`titleSpacing`��属性，横轴上标题内容周围的间距，即使没有前导内容或操作���也会应用此间距。
       // 如果希望标题（`title`）属性占用所有可用空间，���将此值设置为0.0。
       titleSpacing: 0.0,
+      backgroundColor: Colors.white,
       // 应用栏（`AppBar`）中显示的主要组件。
       title: viewService.buildComponent('searchComponent'),
       bottom: PreferredSize(
@@ -43,7 +44,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                     child: Center(
                       child: Text(
                         homeTabModel.tabName,
-                        style: TextStyle(
+                        style: TextStyle(color: Colors.black,
                             fontSize: 15.0,),
                       ),
                     ),
@@ -52,7 +53,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                   // 是滚动（`isScrollable`）属性，此选项卡栏是否可以水平滚动。
                   isScrollable: true,
                   // 指示灯颜色（`indicatorColor`）属性，显示在所选选项卡下方的线条颜色。
-                  indicatorColor: Color(0xffFFFFFF),
+                  indicatorColor: Colors.orange,
                   // 指标大小（`indicatorSize`）属性，定义如何计算选定选项卡指示符的大小。
                   indicatorSize: TabBarIndicatorSize.label,
                   // 标签样式（`labelStyle`）属性，所选标签的文本样式。
@@ -97,6 +98,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
                         'assets/app_bar_more.png',
                         height: 12,
                         width: 12,
+                        color: Colors.black38,
                       ),
                     ),
                   ],
@@ -113,12 +115,11 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
     body: Container(
       padding: EdgeInsets.only(top: 4),
       decoration: BoxDecoration(
-        color: Colors.orange
+        color: Colors.white
       ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0),topRight: Radius.circular(12.0)),
         ),
         child: TabBarView(
           controller: state.tabController,
